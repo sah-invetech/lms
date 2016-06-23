@@ -234,12 +234,10 @@ controller('UIModalsCtrl', function($scope, $rootScope, $http) {
                 method: 'POST',
                 url: '/login',
                 headers: {
-                    'Content-Type': 'applications/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                data: {
-                    username: $scope.username,
-                    password: $scope.password
-                },
+                data:'username='+$scope.username+'&password='+$scope.password
+                ,
             }).then(function(response) {
                 $scope.showMsg = {
                     status: 'sucess',

@@ -1,7 +1,9 @@
 var User = require('../models/user.model');
 
-module.exports.login = function(req, res) {
-  console.log('req.body',req.body);
+exports.login = function(req, res) {
+  console.log('req.body',req.body);  
+console.log('req.params',req.params);
+console.log('req.query',req.query);
     User.findOne({
         username: req.body.username,
         password: req.body.password

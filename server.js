@@ -15,19 +15,22 @@ mongoose.connection.on('error', function(err) {
 });
 
 var app = express();
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 app.use(express.static(__dirname + '/public'));         // set the static files location
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/assets', express.static(__dirname + '/public/assets'));
 app.use('/app', express.static(__dirname + '/public/app'));
 
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+
 app.use(cookieParser());
 app.use(expressSession({
   secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
 }));
 
 app.use(passport.initialize());
