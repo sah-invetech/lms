@@ -1,0 +1,613 @@
+<script>
+    var xenonPalette = ['#68b828', '#7c38bc', '#0e62c7', '#fcd036', '#4fcdfc', '#00b19d', '#ff6264', '#f7aa47'];
+</script>
+<style>
+    .form-control {
+        font-size: 15px!important;
+    }
+</style>
+<page-title  title="Dashboard"></page-title>
+<div class="row">
+    <div class="panel panel-default" style="padding: 7px;">
+        <div class="panel-body" style="padding-top: 0px;">
+            <div class="col-lg-7 ">
+                <form role="form" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <select class="form-control">
+                                <option>Select Dashboard</option>
+                                <option>Excahage</option>
+                                <option>bilateral</option>
+                                <option>Smartech</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control">
+                                <option>Select Manager</option>
+                                <option>User1</option>
+                                <option>User2</option>
+
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control">
+                                <option>Select User</option>
+                                <option>User1</option>
+                                <option>User2</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-5">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><b>Select Date</b></label>
+
+                        <div class="col-sm-7">
+                            <div class="daterange daterange-inline add-ranges" data-format="MMMM , YYYY" data-start-date="November , 2014" data-end-date="December , 2014">
+                                <i class="fa-calendar"></i>
+                                <span>November , 2014 - December , 2014</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-lg-3">
+        <div class="col-lg-12">
+            <div class="xe-widget xe-counter-block" xe-counter data-count=".num" data-from="112" data-to="112" data-suffix="" data-duration="0">
+                <div class="xe-upper">
+                    <div class="xe-icon">
+                        <i class="linecons-user"></i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num"></strong>
+                        <h4>Total Leads</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="xe-widget xe-counter-block xe-counter-block-purple" xe-counter data-count=".num" data-from="50" data-to="50" data-duration="">
+                <div class="xe-upper">
+                    <div class="xe-icon">
+                        <i class="linecons-calendar"></i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num"></strong>
+                        <h4>Total Booked</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="xe-widget xe-counter-block xe-counter-block-blue" xe-counter data-suffix="%" data-count=".num" data-from="44.6" data-to="44.6" data-duration="" data-easing="false">
+                <div class="xe-upper">
+                    <div class="xe-icon">
+                        <i class="linecons-eye"></i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num"></strong>
+                        <h4>Conversion Rate</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="xe-widget xe-counter-block xe-counter-block-orange" xe-counter data-prefix="&#8377;" data-count=".num" data-from="100000" data-to="100000" data-duration="" data-easing="false">
+                <div class="xe-upper">
+                    <div class="xe-icon">
+                        <i class="linecons-money"></i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num"></strong>
+                        <h4>Total Revenue</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-9 col-lg-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Job Type Booking</h3>
+            </div>
+            <div class="panel-body">	
+                <script type="text/javascript">
+                    jQuery(document).ready(function ($)
+                    {
+                        if (!$.isFunction($.fn.dxChart))
+                            return;
+
+                        var dataSource = [
+                            {state: "Jan", jan: 45.56},
+                            {state: "Feb", feb: 12.94},
+                            {state: "Mar", mar: 19.87},
+                            {state: "Apr", apr: 4.39},
+                            {state: "May", may: 4.08},
+                            {state: "Jun", jun: 12.03},
+                        ];
+
+                        $("#JobType").dxChart({
+                            equalBarWidth: false,
+                            dataSource: dataSource,
+                            commonSeriesSettings: {
+                                argumentField: "state",
+                                type: "bar"
+                            },
+                            argumentAxis: {
+                                title: 'Month'
+                            },
+                            valueAxis: {
+                                title: 'Revenue in Lacs'
+                            },
+                            series: [
+                                {valueField: "jan", name: "Jan", color: "#0e62c7"},
+                                {valueField: "feb", name: "Feb ", color: "#2c2e2f"},
+                                {valueField: "mar", name: "Mar ", color: "#7c38bc"},
+                                {valueField: "apr", name: "Apr ", color: "orange"},
+                                {valueField: "may", name: "May ", color: "purple"},
+                                {valueField: "jun", name: "Jun ", color: "#FF6600"}
+                            ]
+                        });
+                    });
+                </script>
+                <div id="JobType" style="height: 293px; width: 100%;"></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Leads By Stages</h3>
+            </div>
+            <div class="panel-body">	
+
+                <div id="bar-1" style="height: 350px; width: 100%;"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Leads By Status</h3>
+
+            </div>
+            <div class="panel-body">	
+
+                <div id="bar-2" style="height: 350px; width: 100%;"></div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sales By Person</h3>
+
+            </div>
+            <div class="panel-body">	
+
+                <div id="bar-3" style="height: 350px; width: 100%;"></div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Leads By Source</h3>
+            </div>
+            <div class="panel-body">
+                <div id="bar-4" style="height: 350px; width: 100%;"></div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">lead closed Reason</h3>
+            </div>
+            <div class="panel-body">	
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 center">
+                    <div id="bar-10" class="text-center"style="height: 350px;width:230px;;margin-top: -62px;"></div>
+                </div>
+                <div class="col-lg-8 table-responsive">
+                    <table class="table responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Closed reason </th>
+                                <th>Jobs</th>
+                                <th>Percentage of jobs</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr style="color: purple;">
+                                <td><div style="background: purple; height: 18px;width: 35px;"></div></td>
+                                <td>Stale</td>
+                                <td>23</td>
+                                <td>43.40%</td>
+                            </tr>
+
+                            <tr style="color: orange;">
+                                <td><div style="background: orange; height: 18px;width: 35px;"></div></td>
+                                <td>Unavailable</td>
+                                <td>12</td>
+                                <td>22.64%</td>
+                            </tr>
+
+                            <tr style="color: #009999;">
+                                <td><div style="background: #009999; height: 18px;width: 35px;"></div></td>
+                                <td>Already Booked</td>
+                                <td>12</td>
+                                <td>22.64%</td>
+                            </tr>
+                            <tr style="color: green;">
+                                <td><div style="background: green; height: 18px;width: 35px;"></div></td>
+                                <td>Exceeded Budget</td>
+                                <td>2</td>
+                                <td>3.77%</td>
+                            </tr>
+                            <tr style="color: blue;">
+                                <td><div style="background: blue; height: 18px;width: 35px;"></div></td>
+                                <td>Newborn Reffred out</td>
+                                <td>1</td>
+                                <td>3.77%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function ($)
+    {
+        if (!$.isFunction($.fn.dxChart))
+            return;
+
+        var dataSource = [
+            {region: "Asia", val: 4119626293},
+            {region: "Africa", val: 1012956064},
+            {region: "Northern America", val: 344124520},
+            {region: "Latin America and the Caribbean", val: 590946440},
+            {region: "Europe", val: 727082222},
+            {region: "Oceania", val: 35104756}
+        ], timer;
+
+        $("#bar-10").dxPieChart({
+            dataSource: dataSource,
+            title: "",
+            tooltip: {
+                enabled: false,
+                format: "millions",
+                customizeText: function () {
+                    return this.argumentText + "<br/>" + this.valueText;
+                }
+            },
+            size: {
+                height: 420
+            },
+            pointClick: function (point) {
+                point.showTooltip();
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    point.hideTooltip();
+                }, 2000);
+                $("select option:contains(" + point.argument + ")").prop("selected", true);
+            },
+            legend: {
+                visible: false
+            },
+            series: [{
+                    type: "doughnut",
+                    argumentField: "region"
+                }],
+            palette: xenonPalette
+        });
+
+    });
+</script>
+<script>
+    var chart = AmCharts.makeChart("bar-3", {
+        "theme": "light",
+        "type": "serial",
+        "startDuration": 2,
+        "dataProvider": [{
+                "country": "sunil",
+                "visits": 40,
+                "color": "#0000ff"
+            }, {
+                "country": "Amit",
+                "visits": 18,
+                "color": "#0000ff"
+            }, {
+                "country": "Rohit",
+                "visits": 18,
+                "color": "#0000ff"
+            }, {
+                "country": "Mohit",
+                "visits": 13,
+                "color": "#0000ff"
+            }],
+        "valueAxes": [{
+                "position": "left",
+                "title": "In Thousand"
+
+            }],
+        "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "colorField": "color",
+                "fillAlphas": 0.85,
+                "lineAlpha": 0.1,
+                "type": "column",
+                "topRadius": 1,
+                "valueField": "visits"
+            }],
+        "depth3D": 40,
+        "angle": 30,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "country",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0
+
+        },
+        "export": {
+            "enabled": true
+        }
+
+    }, 0);
+
+    jQuery('.chart-input').off().on('input change', function () {
+        var property = jQuery(this).data('property');
+        var target = chart;
+        chart.startDuration = 0;
+
+        if (property == 'topRadius') {
+            target = chart.graphs[0];
+        }
+
+        target[property] = this.value;
+        chart.validateNow();
+    });
+</script>
+<script>
+    var chart = AmCharts.makeChart("bar-2", {
+        "theme": "light",
+        "type": "serial",
+        "startDuration": 2,
+        "dataProvider": [
+            {
+                "country": "Assigned Leads",
+                "visits": 580,
+                "color": "#008000"
+            }, {
+                "country": "Unasigned Leads",
+                "visits": 443,
+                "color": "#ffa500"
+            }, {
+                "country": "Not Contacted",
+                "visits": 441,
+                "color": "#FF0F00"
+            }],
+        "valueAxes": [{
+                "position": "left",
+                "title": "No Of Lead"
+
+            }],
+        "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "colorField": "color",
+                "fillAlphas": 0.85,
+                "lineAlpha": 0.1,
+                "type": "column",
+                "topRadius": 1,
+                "valueField": "visits"
+            }],
+        "depth3D": 40,
+        "angle": 30,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "country",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0
+
+        },
+        "export": {
+            "enabled": true
+        }
+
+    }, 0);
+
+    jQuery('.chart-input').off().on('input change', function () {
+        var property = jQuery(this).data('property');
+        var target = chart;
+        chart.startDuration = 0;
+
+        if (property == 'topRadius') {
+            target = chart.graphs[0];
+        }
+
+        target[property] = this.value;
+        chart.validateNow();
+    });
+</script>
+<script>
+    var chart = AmCharts.makeChart("bar-1", {
+        "theme": "light",
+        "type": "serial",
+        "startDuration": 2,
+        "dataProvider": [{
+                "country": "Prospect",
+                "visits": 202,
+                "color": "#ffff00"
+            }, {
+                "country": "Contact",
+                "visits": 188,
+                "color": "#008000"
+            }, {
+                "country": "Offer",
+                "visits": 180,
+                "color": "#0000ff"
+            }, {
+                "country": "Negotiation",
+                "visits": 132,
+                "color": "#ffa500"
+            }, {
+                "country": "Closing",
+                "visits": 212,
+                "color": "#FF0F00"
+            }],
+        "valueAxes": [{
+                "position": "left",
+                "title": "No Of Leads"
+            }],
+        "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "colorField": "color",
+                "fillAlphas": 0.85,
+                "lineAlpha": 0.1,
+                "type": "column",
+                "topRadius": 1,
+                "valueField": "visits"
+            }],
+        "depth3D": 40,
+        "angle": 30,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "country",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0
+
+        },
+        "export": {
+            "enabled": true
+        }
+
+    }, 0);
+
+    jQuery('.chart-input').off().on('input change', function () {
+        var property = jQuery(this).data('property');
+        var target = chart;
+        chart.startDuration = 0;
+
+        if (property == 'topRadius') {
+            target = chart.graphs[0];
+        }
+
+        target[property] = this.value;
+        chart.validateNow();
+    });
+</script>
+<script>
+    var chart = AmCharts.makeChart("bar-4", {
+        "theme": "light",
+        "type": "serial",
+        "startDuration": 2,
+        "dataProvider": [{
+                "country": "Coal Call",
+                "visits": 4025,
+                "color": "#FF0F00"
+            }, {
+                "country": "Direct Company",
+                "visits": 1882,
+                "color": "#008000"
+            }, {
+                "country": "Advertising",
+                "visits": 395,
+                "color": "#ffa500"
+            }, {
+                "country": "Tradeshow",
+                "visits": 386,
+                "color": "#3f51b5"
+            }],
+        "valueAxes": [{
+                "position": "left",
+                "title": "No Of Leads",
+            }],
+        "graphs": [{
+                "balloonText": "[[category]]: <b>[[value]]</b>",
+                "colorField": "color",
+                "fillAlphas": 0.85,
+                "lineAlpha": 0.1,
+                "type": "column",
+                "topRadius": 1,
+                "valueField": "visits"
+            }],
+        "depth3D": 40,
+        "angle": 30,
+        "chartCursor": {
+            "categoryBalloonEnabled": false,
+            "cursorAlpha": 0,
+            "zoomable": false
+        },
+        "categoryField": "country",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "axisAlpha": 0,
+            "gridAlpha": 0
+
+        },
+        "export": {
+            "enabled": true
+        }
+
+    }, 0);
+
+    jQuery('.chart-input').off().on('input change', function () {
+        var property = jQuery(this).data('property');
+        var target = chart;
+        chart.startDuration = 0;
+
+        if (property == 'topRadius') {
+            target = chart.graphs[0];
+        }
+
+        target[property] = this.value;
+        chart.validateNow();
+    });
+</script>
+
