@@ -23,7 +23,7 @@ app.run(function() {
 });
 app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASSETS) {
 
-    $urlRouterProvider.otherwise('/app/dashboard-maindashboard');
+    $urlRouterProvider.otherwise('/login');
     $stateProvider.
         // Main Layout Structure
     state('app', {
@@ -37,8 +37,8 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
             $rootScope.isMainPage = true;
         }
     }).
-    state('app.dashboard-maindashboard', {
-        url: '/dashboard-maindashboard',
+    state('app.maindashboard', {
+        url: '/maindashboard',
         templateUrl: appHelper.templatePath('dashboards/maindashboard'),
         resolve: {
             resources: function($ocLazyLoad) {
@@ -58,10 +58,10 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
                 ]);
             },
         }
-    }).state('app.dashboard-mydashboard', {
-        url: '/dashboard-mydashboard',
+    }).state('app.mydashboard', {
+        url: '/mydashboard',
         templateUrl: appHelper.templatePath('dashboards/mydashboard'),
-        controller: 'UIModalsCtrl',
+        controller: 'mydashboardCtrl',
         resolve: {
             deps: function($ocLazyLoad) {
                 return $ocLazyLoad.load([
@@ -88,7 +88,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
     }).state('login', {
         url: '/login',
         templateUrl: appHelper.templatePath('user/login'),
-        controller: 'UIModalsCtrl',
+        controller: 'loginCtrl',
         resolve: {
 
         }

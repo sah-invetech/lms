@@ -1,6 +1,6 @@
 module.exports = {
     // MongoDB connection options
     mongo: {
-        uri: 'mong....'
+        uri: 'mongodb://user@password:host:800'
     },
 };
