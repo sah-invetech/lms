@@ -216,40 +216,67 @@ controller('ChatCtrl', function($scope, $element) {
         $chat_conv.removeClass('is-open');
     });
 }).
-controller('loginCtrl', function($scope, $rootScope, $state,$location,$cookies, $http) {
+controller('loginCtrl', function($scope, $rootScope, $state, $location, $cookies, $http, user) {
     var isLoggedIn = $cookies['isLoggedIn'];
-     if (isLoggedIn) {
-         $state.go("app.mydashboard");
-     }
+    if (isLoggedIn) {
+        $state.go("app.mydashboard");
+    }
+    $scope.closeMsgDiv=function(){
+        $scope.showMsg = {};
+    }
+    $rootScope.layoutOptions.horizontalMenu.isVisible=false;
     $rootScope.layoutOptions = {
-        horizontalMenu: {
-            isVisible: false
-        }
+        sidebar: {
+            isVisible: false,
+            isCollapsed: false,
+            toggleOthers: false,
+            isFixed: true,
+            isRight: false,
+
+            isMenuOpenMobile: false,
+
+            // Added in v1.3
+            userProfile: false
+        },
+        chat: {
+            isOpen: false,
+        },
+        settingsPane: {
+            isOpen: false,
+            useAnimation: true
+        },
+        container: {
+            isBoxed: false
+        },
+        skins: {
+            sidebarMenu: '',
+            horizontalMenu: '',
+            userInfoNavbar: ''
+        },
+        pageTitles: false,
+        userInfoNavVisible: false
     };
     $scope.doLogin = function() {
         if ($scope.username != '' && $scope.password != '') {
-            $http({
-                method: 'POST',
-                url: '/login',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: 'username=' + $scope.username + '&password=' + $scope.password,
-            }).then(function(response) {
-                $cookies['isLoggedIn']= response.data.isLoggedIn;
-                $scope.showMsg = {
-                    status: 'sucess',
-                    message: 'Successful to login'
-                };
-                $state.go("app.mydashboard");
-                $rootScope.currentUser = response.data;
-            }, function(response) {
-                $scope.showMsg = {
-                    status: 'error',
-                    message: 'Username or Password is Invalid.'
-                };
-                console.log($scope.showMsg);
-            });
+
+            user.login({ username: $scope.username, password: $scope.password })
+                .success(function(response) {
+                    $cookies['isLoggedIn'] = response.isLoggedIn;
+                    $scope.showMsg = {
+                        status: 'success',
+                        message: 'Successful to login'
+                    };
+                    $state.go("app.mydashboard");
+                    $rootScope.currentUser = response;
+                })
+                .error(function(err) {
+                    $scope.showMsg = {
+                        status: 'error',
+                        type: 'danger',
+                        message: 'Username or Password is Invalid.'
+                    };
+                    console.log($scope.showMsg);
+                });
         } else {
             $scope.showMsg = {
                 status: 'error',
@@ -259,15 +286,129 @@ controller('loginCtrl', function($scope, $rootScope, $state,$location,$cookies, 
         }
     }
 }).
-controller('logoutCtrl', function($scope) {
+controller('mydashboardCtrl', function($scope,$rootScope, $cookies,$modal, $state) {
+    // Open Simple Modal
+        $scope.openModal = function(modal_id, modal_size, modal_backdrop)
+        {
+            $rootScope.currentModal = $modal.open({
+                templateUrl: modal_id,
+                size: modal_size,
+                backdrop: typeof modal_backdrop == 'undefined' ? true : modal_backdrop
+            });
+        };
+
+        // Loading AJAX Content
+        $scope.openAjaxModal = function(modal_id, url_location)
+        {
+            $rootScope.currentModal = $modal.open({
+                templateUrl: modal_id,
+                resolve: {
+                    ajaxContent: function($http)
+                    {
+                        return $http.get(url_location).then(function(response){
+                            $rootScope.modalContent = $sce.trustAsHtml(response.data);
+                        }, function(response){
+                            $rootScope.modalContent = $sce.trustAsHtml('<div class="label label-danger">Cannot load ajax content! Please check the given url.</div>');
+                        });
+                    }
+                }
+            });
+
+            $rootScope.modalContent = $sce.trustAsHtml('Modal content is loading...');
+        }
+    var isLoggedIn = $cookies['isLoggedIn'];
+    console.log('isLoggedIn', isLoggedIn);
+    if (!isLoggedIn) {
+        $state.go("app.login");
+    }
+     $rootScope.layoutOptions = {
+        horizontalMenu: {
+            isVisible: true,
+            isFixed: true,
+            minimal: false,
+            clickToExpand: false,
+
+            isMenuOpenMobile: false
+        },
+        sidebar: {
+            isVisible: false,
+            isCollapsed: false,
+            toggleOthers: true,
+            isFixed: true,
+            isRight: false,
+
+            isMenuOpenMobile: false,
+
+            // Added in v1.3
+            userProfile: true
+        },
+        chat: {
+            isOpen: false,
+        },
+        settingsPane: {
+            isOpen: false,
+            useAnimation: true
+        },
+        container: {
+            isBoxed: false
+        },
+        skins: {
+            sidebarMenu: '',
+            horizontalMenu: '',
+            userInfoNavbar: ''
+        },
+        pageTitles: true,
+        userInfoNavVisible: false
+    };
+}).
+controller('maindashboardCtrl', function($scope,$rootScope, $cookies, $state) {
+    var isLoggedIn = $cookies['isLoggedIn'];
+    if (!isLoggedIn) {
+        $state.go("app.login");
+    }
+     $rootScope.layoutOptions = {
+        horizontalMenu: {
+            isVisible: true,
+            isFixed: true,
+            minimal: false,
+            clickToExpand: false,
+
+            isMenuOpenMobile: false
+        },
+        sidebar: {
+            isVisible: false,
+            isCollapsed: false,
+            toggleOthers: true,
+            isFixed: true,
+            isRight: false,
+
+            isMenuOpenMobile: false,
+
+            // Added in v1.3
+            userProfile: true
+        },
+        chat: {
+            isOpen: false,
+        },
+        settingsPane: {
+            isOpen: false,
+            useAnimation: true
+        },
+        container: {
+            isBoxed: false
+        },
+        skins: {
+            sidebarMenu: '',
+            horizontalMenu: '',
+            userInfoNavbar: ''
+        },
+        pageTitles: true,
+        userInfoNavVisible: false
+    };
+}).
+controller('logoutCtrl', function($rootScope, $cookies, $state, user) {
+    user.logout();
     delete $cookies['isLoggedIn'];
     delete $rootScope.currentUser;
-}).
-controller('mydashboardCtrl', function($scope) {
-    
-}).
-controller('maindashboardCtrl', function($scope) {
-    
+    $state.go("app.login");
 })
-
-

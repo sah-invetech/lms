@@ -1,5 +1,5 @@
 var express = require('express');
-var config = require('./config/environment');
+var config = require('./server/config/environment');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -19,6 +19,7 @@ var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/public'));         // set the static files location
 app.use('/public', express.static(__dirname + '/public'));
@@ -37,8 +38,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./config/passport')(passport);
-require('./app/route')(app);
+require('./server/config/passport')(passport);
+require('./server/route')(app);
 
 app.listen(config.port, function() {
   console.log('app listen on ' + config.ipaddress + ' ' + config.port);

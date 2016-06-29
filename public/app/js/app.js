@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('xenon-app', [
+var app = angular.module('lmsApp', [
     'ngCookies',
     'ui.router',
     'ui.bootstrap',
@@ -23,23 +23,29 @@ app.run(function() {
 });
 app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASSETS) {
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/app/login');
     $stateProvider.
         // Main Layout Structure
     state('app', {
         abstract: true,
         url: '/app',
         templateUrl: appHelper.templatePath('layout/app-body'),
-        controller: function($rootScope) {
+        controller: function($rootScope, $cookies, $state) {
             $rootScope.isLoginPage = false;
             $rootScope.isLightLoginPage = true;
             $rootScope.isLockscreenPage = false;
             $rootScope.isMainPage = true;
+            var isLoggedIn = $cookies['isLoggedIn'];
+            console.log('isLoggedIn', isLoggedIn);
+            if (!isLoggedIn) {
+                $state.go("app.login");
+            }
         }
     }).
     state('app.maindashboard', {
         url: '/maindashboard',
         templateUrl: appHelper.templatePath('dashboards/maindashboard'),
+        controller: 'maindashboardCtrl',
         resolve: {
             resources: function($ocLazyLoad) {
                 return $ocLazyLoad.load([
@@ -85,13 +91,13 @@ app.config(function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, ASS
                 ]);
             },
         }
-    }).state('login', {
+    }).state('app.login', {
         url: '/login',
         templateUrl: appHelper.templatePath('user/login'),
-        controller: 'loginCtrl',
-        resolve: {
-
-        }
+        controller: 'loginCtrl'
+    }).state('app.logout', {
+        url: '/logout',
+        controller: 'logoutCtrl'
     })
 });
 

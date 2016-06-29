@@ -5,37 +5,34 @@
             <div class="panel-heading" style="text-align: center;">
                 <a href="#/app/dashboard-variant-1" class="logo">
                     <img src="assets/images/mylogo.png" alt="" />
-
                 </a>
-
             </div>
-
             <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label" for="username">Email</label>
-                    <input type="text" ng-model="username" class="form-control" name="username" id="username" autocomplete="off" />
+                <div ng-if="showMsg.status" class="alert alert-{{showMsg.type}} alert-dismissible" role="alert">
+                    <button ng-click="closeMsgDiv()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{showMsg.message}}
                 </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="passwd">Password</label>
-                    <input type="password" ng-model="password" class="form-control" name="password" id="password" autocomplete="off" />
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" ng-click="doLogin()" class="btn btn-success  btn-block text-center">
-                        <i class="fa-lock"></i>
-                        Log In
-                    </button>
-                </div>
+                <form>
+                    <div class="form-group">
+                        <label class="control-label" for="username">Email</label>
+                        <input type="text" ng-model="username" class="form-control" name="username" id="username" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="passwd">Password</label>
+                        <input type="password" ng-model="password" class="form-control" name="password" id="password" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" ng-click="doLogin()" class="btn btn-success  btn-block text-center">
+                            <i class="fa-lock"></i> Log In
+                        </button>
+                    </div>
+                </form>
                 <div class="form-group">
                     <button type="submit" class="btn btn-danger  btn-block text-center">
-                        <i class="fa fa-google"></i>
-                        Log In with google account
+                        <i class="fa fa-google"></i> Log In with google account
                     </button>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>

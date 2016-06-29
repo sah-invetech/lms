@@ -10,7 +10,7 @@ function isAuthenticated(req, res, next) {
 }
 
 module.exports = function(app) {
-    app.post('/login', userCtrl.login);
+    app.post('/server/user/login', userCtrl.login);
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['profile', 'email']
     }));
@@ -21,4 +21,9 @@ module.exports = function(app) {
             successRedirect: '/home',
             failureRedirect: '/'
         }));
+    app.get('/server/user/logout', function(req, res) {
+        console.log('logout called');
+        req.logout();
+        res.status(200).end();
+    });
 };
